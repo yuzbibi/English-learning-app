@@ -6,7 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>英語学習アプリ</title>
   <meta name="description" content="小学生高学年向け英語学習アプリ。日本語を英語に翻訳し、読み上げ・スピーキング練習機能付き。">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap"
+    rel="stylesheet">
   <style>
     :root {
       --bg: #F5F7FA;
@@ -24,14 +26,20 @@
       --red: #EF4444;
       --red-light: #FEF2F2;
       --orange: #F97316;
-      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-      --shadow: 0 4px 16px rgba(0,0,0,0.07), 0 2px 6px rgba(0,0,0,0.04);
-      --shadow-lg: 0 12px 40px rgba(0,0,0,0.10), 0 4px 12px rgba(0,0,0,0.06);
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+      --shadow: 0 4px 16px rgba(0, 0, 0, 0.07), 0 2px 6px rgba(0, 0, 0, 0.04);
+      --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.10), 0 4px 12px rgba(0, 0, 0, 0.06);
       --radius: 18px;
       --radius-sm: 10px;
       --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
       font-family: 'Noto Sans JP', 'Inter', sans-serif;
       background: var(--bg);
@@ -39,6 +47,7 @@
       min-height: 100vh;
       padding: 24px 16px 60px;
     }
+
     .app-container {
       max-width: 780px;
       margin: 0 auto;
@@ -46,6 +55,7 @@
       flex-direction: column;
       gap: 20px;
     }
+
     /* ---- Header ---- */
     header {
       padding: 28px 32px;
@@ -55,24 +65,62 @@
       box-shadow: var(--shadow-sm);
       animation: fadeDown 0.5s ease forwards;
     }
+
     @keyframes fadeDown {
-      from { opacity: 0; transform: translateY(-12px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(-12px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
-    .header-inner { display: flex; align-items: center; }
-    .logo { display: flex; align-items: center; gap: 16px; }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
     .logo-icon {
       font-size: 2.2rem;
-      width: 56px; height: 56px;
+      width: 56px;
+      height: 56px;
       background: var(--blue-light);
       border-radius: 14px;
-      display: flex; align-items: center; justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       flex-shrink: 0;
     }
-    header h1 { font-size: 1.5rem; font-weight: 700; color: var(--text-primary); letter-spacing: -0.3px; }
-    header p  { font-size: 0.85rem; color: var(--text-secondary); margin-top: 3px; }
+
+    header h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: -0.3px;
+    }
+
+    header p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-top: 3px;
+    }
+
     /* ---- Cards ---- */
-    main { display: flex; flex-direction: column; gap: 20px; }
+    main {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
     .card {
       background: var(--surface);
       border-radius: var(--radius);
@@ -82,169 +130,476 @@
       opacity: 0;
       animation: fadeUp 0.5s ease forwards;
     }
-    .card:nth-child(1) { animation-delay: 0.08s; }
-    .card:nth-child(2) { animation-delay: 0.16s; }
-    .card:nth-child(3) { animation-delay: 0.24s; }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
+
+    .card:nth-child(1) {
+      animation-delay: 0.08s;
     }
+
+    .card:nth-child(2) {
+      animation-delay: 0.16s;
+    }
+
+    .card:nth-child(3) {
+      animation-delay: 0.24s;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     .card-header {
-      display: flex; align-items: flex-start; gap: 16px;
-      margin-bottom: 28px; padding-bottom: 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 28px;
+      padding-bottom: 20px;
       border-bottom: 1px solid var(--border);
     }
+
     .section-num {
       font-family: 'Inter', monospace;
-      font-size: 0.7rem; font-weight: 700;
-      color: var(--blue); background: var(--blue-light);
-      border: 1px solid rgba(59,130,246,0.2);
-      border-radius: 8px; padding: 4px 8px;
-      letter-spacing: 1px; margin-top: 3px; flex-shrink: 0;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--blue);
+      background: var(--blue-light);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      border-radius: 8px;
+      padding: 4px 8px;
+      letter-spacing: 1px;
+      margin-top: 3px;
+      flex-shrink: 0;
     }
-    #card-speak .section-num { color: var(--orange); background: #FFF7ED; border-color: rgba(249,115,22,0.2); }
-    #card-read  .section-num { color: var(--green);  background: var(--green-light); border-color: rgba(16,185,129,0.2); }
-    .card h2       { font-size: 1.15rem; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
-    .card-desc     { font-size: 0.85rem; color: var(--text-secondary); }
+
+    #card-speak .section-num {
+      color: var(--orange);
+      background: #FFF7ED;
+      border-color: rgba(249, 115, 22, 0.2);
+    }
+
+    #card-read .section-num {
+      color: var(--green);
+      background: var(--green-light);
+      border-color: rgba(16, 185, 129, 0.2);
+    }
+
+    .card h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .card-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
     /* ---- Inputs ---- */
-    .input-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 16px; }
-    label { font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); letter-spacing: 0.4px; text-transform: uppercase; }
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+    }
+
     textarea {
-      width: 100%; height: 110px;
+      width: 100%;
+      height: 110px;
       padding: 14px 16px;
       background: var(--surface-2);
       border: 1.5px solid var(--border);
       border-radius: var(--radius-sm);
       color: var(--text-primary);
-      font-family: inherit; font-size: 1rem; line-height: 1.6;
-      resize: vertical; transition: var(--transition);
+      font-family: inherit;
+      font-size: 1rem;
+      line-height: 1.6;
+      resize: vertical;
+      transition: var(--transition);
     }
-    textarea::placeholder { color: var(--text-muted); }
-    textarea:focus { outline: none; border-color: var(--blue); background: var(--surface); box-shadow: 0 0 0 3px rgba(59,130,246,0.1); }
+
+    textarea::placeholder {
+      color: var(--text-muted);
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: var(--blue);
+      background: var(--surface);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
     /* ---- Buttons ---- */
     .btn {
-      font-family: inherit; font-weight: 600; font-size: 0.95rem;
-      cursor: pointer; border: none; border-radius: var(--radius-sm);
-      padding: 12px 20px; transition: var(--transition);
-      display: inline-flex; align-items: center; justify-content: center;
-      gap: 8px; letter-spacing: 0.2px;
+      font-family: inherit;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      border: none;
+      border-radius: var(--radius-sm);
+      padding: 12px 20px;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      letter-spacing: 0.2px;
     }
+
     .btn-primary {
-      width: 100%; background: var(--blue); color: white;
-      margin-top: 4px; box-shadow: 0 2px 8px rgba(59,130,246,0.3);
+      width: 100%;
+      background: var(--blue);
+      color: white;
+      margin-top: 4px;
+      box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
     }
-    .btn-primary:hover { background: var(--blue-dark); box-shadow: 0 4px 16px rgba(59,130,246,0.4); transform: translateY(-1px); }
-    .btn-primary:active { transform: translateY(0); }
-    .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
+
+    .btn-primary:hover {
+      background: var(--blue-dark);
+      box-shadow: 0 4px 16px rgba(59, 130, 246, 0.4);
+      transform: translateY(-1px);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
     .btn-voice {
-      background: var(--green-light); color: var(--green);
-      border: 1.5px solid rgba(16,185,129,0.25); white-space: nowrap;
+      background: var(--green-light);
+      color: var(--green);
+      border: 1.5px solid rgba(16, 185, 129, 0.25);
+      white-space: nowrap;
     }
-    .btn-voice:hover { background: var(--green); color: white; border-color: transparent; box-shadow: 0 4px 12px rgba(16,185,129,0.35); transform: translateY(-1px); }
+
+    .btn-voice:hover {
+      background: var(--green);
+      color: white;
+      border-color: transparent;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+      transform: translateY(-1px);
+    }
+
     .btn-record {
-      width: 100%; max-width: 280px; padding: 16px 28px; font-size: 1rem;
-      background: var(--surface-2); color: var(--text-primary);
-      border: 2px dashed var(--border); border-radius: 50px; gap: 10px;
+      width: 100%;
+      max-width: 280px;
+      padding: 16px 28px;
+      font-size: 1rem;
+      background: var(--surface-2);
+      color: var(--text-primary);
+      border: 2px dashed var(--border);
+      border-radius: 50px;
+      gap: 10px;
     }
-    .btn-record:hover { border-color: var(--orange); color: var(--orange); background: #FFF7ED; transform: translateY(-1px); }
+
+    .btn-record:hover {
+      border-color: var(--orange);
+      color: var(--orange);
+      background: #FFF7ED;
+      transform: translateY(-1px);
+    }
+
     .btn-record.recording {
-      background: #FEF2F2; border: 2px solid var(--red); color: var(--red);
+      background: #FEF2F2;
+      border: 2px solid var(--red);
+      color: var(--red);
       animation: recordPulse 1.5s ease-in-out infinite;
     }
+
     @keyframes recordPulse {
-      0%, 100% { box-shadow: 0 0 0 0 rgba(239,68,68,0.3); }
-      50%       { box-shadow: 0 0 0 10px rgba(239,68,68,0); }
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.3);
+      }
+
+      50% {
+        box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+      }
     }
+
     /* ---- Result boxes ---- */
     .result-box {
-      margin-top: 20px; background: var(--blue-light);
-      border: 1.5px solid rgba(59,130,246,0.2);
-      border-radius: var(--radius-sm); padding: 20px;
+      margin-top: 20px;
+      background: var(--blue-light);
+      border: 1.5px solid rgba(59, 130, 246, 0.2);
+      border-radius: var(--radius-sm);
+      padding: 20px;
       animation: fadeIn 0.35s ease;
     }
+
     .speech-result-box {
-      margin-top: 20px; background: #FFF7ED;
-      border: 1.5px solid rgba(249,115,22,0.2);
-      border-radius: var(--radius-sm); padding: 20px;
+      margin-top: 20px;
+      background: #FFF7ED;
+      border: 1.5px solid rgba(249, 115, 22, 0.2);
+      border-radius: var(--radius-sm);
+      padding: 20px;
       animation: fadeIn 0.35s ease;
     }
+
     @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.98); }
-      to   { opacity: 1; transform: scale(1); }
+      from {
+        opacity: 0;
+        transform: scale(0.98);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
-    .hidden { display: none !important; }
+
+    .hidden {
+      display: none !important;
+    }
+
     .result-label {
-      display: flex; align-items: center; gap: 6px;
-      font-size: 0.75rem; font-weight: 700; color: var(--blue);
-      text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 10px;
     }
-    .speech-result-box .result-label { color: var(--orange); }
-    .result-text { font-size: 1.25rem; font-weight: 600; color: var(--text-primary); line-height: 1.7; word-break: break-word; }
+
+    .speech-result-box .result-label {
+      color: var(--orange);
+    }
+
+    .result-text {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.7;
+      word-break: break-word;
+    }
+
     /* ---- Speed pills ---- */
     .audio-controls {
-      display: flex; flex-wrap: wrap; align-items: flex-end;
-      gap: 16px; margin-top: 18px; padding: 16px;
-      background: var(--surface-2); border-radius: var(--radius-sm);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      gap: 16px;
+      margin-top: 18px;
+      padding: 16px;
+      background: var(--surface-2);
+      border-radius: var(--radius-sm);
       border: 1px solid var(--border);
     }
-    .speed-group { display: flex; flex-direction: column; gap: 8px; flex: 1; min-width: 200px; }
-    .speed-pills { display: flex; gap: 6px; flex-wrap: wrap; }
-    .pill {
-      font-family: inherit; font-size: 0.8rem; font-weight: 600;
-      cursor: pointer; padding: 6px 12px; border-radius: 50px;
-      border: 1.5px solid var(--border); background: var(--surface);
-      color: var(--text-secondary); transition: var(--transition);
+
+    .speed-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+      min-width: 200px;
     }
-    .pill:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-light); }
-    .pill.active { background: var(--blue); color: white; border-color: var(--blue); box-shadow: 0 2px 6px rgba(59,130,246,0.3); }
+
+    .speed-pills {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .pill {
+      font-family: inherit;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 6px 12px;
+      border-radius: 50px;
+      border: 1.5px solid var(--border);
+      background: var(--surface);
+      color: var(--text-secondary);
+      transition: var(--transition);
+    }
+
+    .pill:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+      background: var(--blue-light);
+    }
+
+    .pill.active {
+      background: var(--blue);
+      color: white;
+      border-color: var(--blue);
+      box-shadow: 0 2px 6px rgba(59, 130, 246, 0.3);
+    }
+
     /* ---- Speaking section ---- */
-    .speak-area { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+    .speak-area {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
     /* ---- Waveform ---- */
     .waveform-container {
-      display: flex; align-items: center; justify-content: center;
-      gap: 4px; height: 40px; opacity: 0; transition: opacity 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      height: 40px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
-    .waveform-container.active { opacity: 1; }
-    .waveform-container span { display: block; width: 4px; background: var(--orange); border-radius: 4px; height: 6px; animation: none; }
-    .waveform-container.active span { animation: wave 1.2s ease-in-out infinite; }
-    .waveform-container span:nth-child(1)  { animation-delay: 0s;   }
-    .waveform-container span:nth-child(2)  { animation-delay: 0.1s; }
-    .waveform-container span:nth-child(3)  { animation-delay: 0.2s; }
-    .waveform-container span:nth-child(4)  { animation-delay: 0.3s; }
-    .waveform-container span:nth-child(5)  { animation-delay: 0.4s; }
-    .waveform-container span:nth-child(6)  { animation-delay: 0.5s; }
-    .waveform-container span:nth-child(7)  { animation-delay: 0.4s; }
-    .waveform-container span:nth-child(8)  { animation-delay: 0.3s; }
-    .waveform-container span:nth-child(9)  { animation-delay: 0.2s; }
-    .waveform-container span:nth-child(10) { animation-delay: 0.1s; }
+
+    .waveform-container.active {
+      opacity: 1;
+    }
+
+    .waveform-container span {
+      display: block;
+      width: 4px;
+      background: var(--orange);
+      border-radius: 4px;
+      height: 6px;
+      animation: none;
+    }
+
+    .waveform-container.active span {
+      animation: wave 1.2s ease-in-out infinite;
+    }
+
+    .waveform-container span:nth-child(1) {
+      animation-delay: 0s;
+    }
+
+    .waveform-container span:nth-child(2) {
+      animation-delay: 0.1s;
+    }
+
+    .waveform-container span:nth-child(3) {
+      animation-delay: 0.2s;
+    }
+
+    .waveform-container span:nth-child(4) {
+      animation-delay: 0.3s;
+    }
+
+    .waveform-container span:nth-child(5) {
+      animation-delay: 0.4s;
+    }
+
+    .waveform-container span:nth-child(6) {
+      animation-delay: 0.5s;
+    }
+
+    .waveform-container span:nth-child(7) {
+      animation-delay: 0.4s;
+    }
+
+    .waveform-container span:nth-child(8) {
+      animation-delay: 0.3s;
+    }
+
+    .waveform-container span:nth-child(9) {
+      animation-delay: 0.2s;
+    }
+
+    .waveform-container span:nth-child(10) {
+      animation-delay: 0.1s;
+    }
+
     @keyframes wave {
-      0%, 100% { height: 6px;  }
-      50%       { height: 32px; }
+
+      0%,
+      100% {
+        height: 6px;
+      }
+
+      50% {
+        height: 32px;
+      }
     }
+
     /* ---- Speech feedback ---- */
     .speech-feedback {
-      margin-top: 12px; font-size: 0.9rem; font-weight: 600;
-      padding: 10px 14px; border-radius: 8px;
-      background: var(--surface); border: 1px solid var(--border);
+      margin-top: 12px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 10px 14px;
+      border-radius: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
       display: none;
     }
-    .speech-feedback:not(:empty) { display: block; }
+
+    .speech-feedback:not(:empty) {
+      display: block;
+    }
+
     /* ---- Warning ---- */
     .warning-box {
-      background: #FEFCE8; border: 1.5px solid #FDE047;
-      border-radius: var(--radius-sm); padding: 16px;
-      font-size: 0.9rem; color: #854D0E; width: 100%;
+      background: #FEFCE8;
+      border: 1.5px solid #FDE047;
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      font-size: 0.9rem;
+      color: #854D0E;
+      width: 100%;
     }
+
     /* ---- Footer ---- */
-    footer { text-align: center; font-size: 0.8rem; color: var(--text-muted); padding: 8px; }
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      padding: 8px;
+    }
+
     /* ---- Responsive ---- */
     @media (max-width: 600px) {
-      body { padding: 16px 12px 48px; }
-      .card { padding: 24px 20px; }
-      header { padding: 20px; }
-      header h1 { font-size: 1.3rem; }
-      .audio-controls { flex-direction: column; align-items: stretch; }
-      .btn-voice { width: 100%; }
+      body {
+        padding: 16px 12px 48px;
+      }
+
+      .card {
+        padding: 24px 20px;
+      }
+
+      header {
+        padding: 20px;
+      }
+
+      header h1 {
+        font-size: 1.3rem;
+      }
+
+      .audio-controls {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn-voice {
+        width: 100%;
+      }
     }
   </style>
 </head>
@@ -282,8 +637,12 @@
         <button id="translate-btn" class="btn btn-primary">
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 8l6 6"/><path d="M4 14l6-6 2-2"/><path d="M2 5h12"/>
-            <path d="M7 2h1"/><path d="M22 22l-5-10-5 10"/><path d="M14 18h6"/>
+            <path d="M5 8l6 6" />
+            <path d="M4 14l6-6 2-2" />
+            <path d="M2 5h12" />
+            <path d="M7 2h1" />
+            <path d="M22 22l-5-10-5 10" />
+            <path d="M14 18h6" />
           </svg>
           英語に翻訳する
         </button>
@@ -292,7 +651,7 @@
           <div class="result-label">
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="20 6 9 17 4 12"/>
+              <polyline points="20 6 9 17 4 12" />
             </svg>
             翻訳結果
           </div>
@@ -303,18 +662,18 @@
               <label for="speed-1">読むスピード</label>
               <div class="speed-pills" id="speed-pills-1" data-target="speed-1">
                 <button class="pill" data-value="0.5">🐢 ゆっくり</button>
+                <button class="pill" data-value="0.65">🚶 少しゆっくり</button>
                 <button class="pill active" data-value="0.8">🚶 普通</button>
                 <button class="pill" data-value="1.1">🏃 少し速い</button>
-                <button class="pill" data-value="1.3">🚀 速い</button>
               </div>
               <input type="hidden" id="speed-1" value="0.8">
             </div>
             <button id="speak-translated-btn" class="btn btn-voice">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
-                <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
-                <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
               </svg>
               英語を聞く
             </button>
@@ -342,18 +701,18 @@
             <label>読むスピード</label>
             <div class="speed-pills" id="speed-pills-2" data-target="speed-2">
               <button class="pill" data-value="0.5">🐢 ゆっくり</button>
+              <button class="pill" data-value="0.65">🚶 少しゆっくり</button>
               <button class="pill active" data-value="0.8">🚶 普通</button>
               <button class="pill" data-value="1.1">🏃 少し速い</button>
-              <button class="pill" data-value="1.3">🚀 速い</button>
             </div>
             <input type="hidden" id="speed-2" value="0.8">
           </div>
           <button id="speak-input-btn" class="btn btn-voice">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
-              <path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
-              <path d="M15.54 8.46a5 5 0 0 1 0 7.07"/>
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+              <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
             </svg>
             英語を聞く
           </button>
@@ -374,10 +733,10 @@
           <button id="start-speech-btn" class="btn btn-record">
             <svg class="mic-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
               fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
-              <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
-              <line x1="12" y1="19" x2="12" y2="23"/>
-              <line x1="8" y1="23" x2="16" y2="23"/>
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+              <line x1="12" y1="19" x2="12" y2="23" />
+              <line x1="8" y1="23" x2="16" y2="23" />
             </svg>
             <span id="speech-btn-text">マイクをおして話す</span>
           </button>
@@ -391,7 +750,7 @@
             <div class="result-label">
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="20 6 9 17 4 12"/>
+                <polyline points="20 6 9 17 4 12" />
               </svg>
               認識した英語
             </div>
@@ -413,19 +772,19 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      const jaInput            = document.getElementById('ja-input');
-      const translateBtn       = document.getElementById('translate-btn');
-      const enResultContainer  = document.getElementById('en-result-container');
-      const enResultText       = document.getElementById('en-result-text');
+      const jaInput = document.getElementById('ja-input');
+      const translateBtn = document.getElementById('translate-btn');
+      const enResultContainer = document.getElementById('en-result-container');
+      const enResultText = document.getElementById('en-result-text');
       const speakTranslatedBtn = document.getElementById('speak-translated-btn');
-      const enInput            = document.getElementById('en-input');
-      const speakInputBtn      = document.getElementById('speak-input-btn');
-      const startSpeechBtn     = document.getElementById('start-speech-btn');
-      const speechBtnText      = document.getElementById('speech-btn-text');
-      const waveform           = document.getElementById('waveform');
+      const enInput = document.getElementById('en-input');
+      const speakInputBtn = document.getElementById('speak-input-btn');
+      const startSpeechBtn = document.getElementById('start-speech-btn');
+      const speechBtnText = document.getElementById('speech-btn-text');
+      const waveform = document.getElementById('waveform');
       const speechResultContainer = document.getElementById('speech-result-container');
-      const speechResultText   = document.getElementById('speech-result-text');
-      const speechFeedback     = document.getElementById('speech-feedback');
+      const speechResultText = document.getElementById('speech-result-text');
+      const speechFeedback = document.getElementById('speech-feedback');
       const speechNotSupported = document.getElementById('speech-not-supported');
 
       // Speed pills
@@ -452,8 +811,8 @@
         synth.cancel();
         const utterThis = new SpeechSynthesisUtterance(text);
         const enVoice = voices.find(v => v.lang.startsWith('en-US') && v.name.includes('Google'))
-                     || voices.find(v => v.lang.startsWith('en-US'))
-                     || voices.find(v => v.lang.startsWith('en'));
+          || voices.find(v => v.lang.startsWith('en-US'))
+          || voices.find(v => v.lang.startsWith('en'));
         if (enVoice) utterThis.voice = enVoice;
         utterThis.lang = 'en-US';
         utterThis.rate = parseFloat(rate);
@@ -463,10 +822,10 @@
       // Vocabulary simplifier
       function simplifyEnglish(text) {
         const map = {
-          purchase:'buy', require:'need', assist:'help', difficult:'hard',
-          comprehend:'understand', reside:'live', consume:'eat', beverage:'drink',
-          obtain:'get', receive:'get', construct:'make', manufacture:'make',
-          automobile:'car', photograph:'photo', attempt:'try'
+          purchase: 'buy', require: 'need', assist: 'help', difficult: 'hard',
+          comprehend: 'understand', reside: 'live', consume: 'eat', beverage: 'drink',
+          obtain: 'get', receive: 'get', construct: 'make', manufacture: 'make',
+          automobile: 'car', photograph: 'photo', attempt: 'try'
         };
         return Object.entries(map).reduce((str, [c, s]) =>
           str.replace(new RegExp(`\\b${c}\\b`, 'gi'), m =>
@@ -564,4 +923,5 @@
     });
   </script>
 </body>
+
 </html>
