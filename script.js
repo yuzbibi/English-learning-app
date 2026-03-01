@@ -356,6 +356,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     enResultText.textContent = result;
     enResultContainer.classList.remove('hidden');
+    alignFourLinesBackground(enResultText);
   });
 
   speakTranslatedBtn.addEventListener('click', () => {
@@ -452,3 +453,43 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+/**
+ * Measure the actual font baseline using canvas and dynamically align
+ * the four-line background so the red baseline matches the text exactly.
+ */
+function alignFourLinesBackground(el) {
+    const style = window.getComputedStyle(el);
+    const fontSize = parseFloat(style.fontSize);       // e.g. 30px
+    const lineHeight = parseFloat(style.lineHeight);   // e.g. 60px
+    const paddingTop = parseFloat(style.paddingTop);   // e.g. 6px
+
+    // Use canvas to measure actual font ascent for the given font
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    ctx.font = `bold ${fontSize}px ${style.fontFamily}`;
+    const metrics = ctx.measureText('lkpgyABCDE');
+
+    // fontBoundingBoxAscent = distance from baseline to top of bounding box
+    const ascent = (metrics.fontBoundingBoxAscent != null)
+        ? metrics.fontBoundingBoxAscent
+        : fontSize * 0.78;  // fallback if API not supported
+    const descent = (metrics.fontBoundingBoxDescent != null)
+        ? metrics.fontBoundingBoxDescent
+        : fontSize * 0.22;
+
+    const totalGlyphHeight = ascent + descent;
+    const halfLead = Math.max(0, (lineHeight - totalGlyphHeight) / 2);
+
+    // Baseline position from the top of the element's padding box:
+    const baselineFromPaddingTop = paddingTop + halfLead + ascent;
+
+    // 4 lines are equally spaced in a cycle = lineHeight
+    // Red line (line 3) is at 3/4 of cycle = 75%
+    const cycle = lineHeight;
+    const redLineInCycle = cycle * 0.75; // e.g., 45px for 60px cycle
+
+    // Set background-position-y so the red line coincides with the text baseline
+    const bgOffsetY = baselineFromPaddingTop - redLineInCycle;
+    el.style.backgroundPositionY = bgOffsetY + 'px';
+}
