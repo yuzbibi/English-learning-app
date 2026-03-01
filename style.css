@@ -214,7 +214,7 @@ textarea {
   border: 1.5px solid var(--border);
   border-radius: var(--radius-sm);
   color: var(--text-primary);
-  font-family: 'UD デジタル 教科書体 N-R', 'UD Digital Kyokasho-tai', 'Comic Sans MS', cursive, 'Noto Sans JP', sans-serif;
+  font-family: 'Andika', 'UD デジタル 教科書体 N-R', 'UD Digital Kyokasho-tai', 'Comic Sans MS', cursive, 'Noto Sans JP', sans-serif;
   font-size: 1.15rem;
   line-height: 1.6;
   resize: vertical;
@@ -380,7 +380,7 @@ textarea:focus {
 
 .result-text {
   font-size: 1.25rem;
-  font-family: 'UD デジタル 教科書体 N-R', 'UD Digital Kyokasho-tai', 'Comic Sans MS', cursive, 'Noto Sans JP', sans-serif;
+  font-family: 'Andika', 'UD デジタル 教科書体 N-R', 'UD Digital Kyokasho-tai', 'Comic Sans MS', cursive, 'Noto Sans JP', sans-serif;
   font-weight: 600;
   color: var(--text-primary);
   line-height: 1.7;
@@ -389,7 +389,7 @@ textarea:focus {
 
 /* ---- Four Lines Background for English Note ---- */
 .four-lines-bg {
-  font-family: 'UD デジタル 教科書体 N-R', 'UD Digital Kyokasho-tai', 'Comic Sans MS', cursive, 'Noto Sans JP', sans-serif;
+  font-family: 'Andika', 'UD デジタル 教科書体 N-R', 'UD Digital Kyokasho-tai', 'Comic Sans MS', cursive, 'Noto Sans JP', sans-serif;
   font-size: 30px;
   /* 約1.875rem */
   line-height: 60px;
