@@ -214,8 +214,8 @@ textarea {
   border: 1.5px solid var(--border);
   border-radius: var(--radius-sm);
   color: var(--text-primary);
-  font-family: inherit;
-  font-size: 1rem;
+  font-family: 'UD デジタル 教科書体 N-R', 'UD Digital Kyokasho-tai', 'Comic Sans MS', cursive, 'Noto Sans JP', sans-serif;
+  font-size: 1.15rem;
   line-height: 1.6;
   resize: vertical;
   transition: var(--transition);
@@ -380,10 +380,38 @@ textarea:focus {
 
 .result-text {
   font-size: 1.25rem;
+  font-family: 'UD デジタル 教科書体 N-R', 'UD Digital Kyokasho-tai', 'Comic Sans MS', cursive, 'Noto Sans JP', sans-serif;
   font-weight: 600;
   color: var(--text-primary);
   line-height: 1.7;
   word-break: break-word;
+}
+
+/* ---- Four Lines Background for English Note ---- */
+.four-lines-bg {
+  font-family: 'UD デジタル 教科書体 N-R', 'UD Digital Kyokasho-tai', 'Comic Sans MS', cursive, 'Noto Sans JP', sans-serif;
+  font-size: 1.8rem;
+  line-height: 48px;
+  color: #1e293b;
+  /* Slightly darker for contrast */
+  padding: 10px 16px 12px 16px;
+  background-color: transparent;
+  background-image: repeating-linear-gradient(transparent,
+      transparent 11px,
+      #cbd5e1 12px,
+      transparent 12px,
+      transparent 23px,
+      #cbd5e1 24px,
+      transparent 24px,
+      transparent 35px,
+      #f87171 36px,
+      /* Base red line */
+      transparent 36px,
+      transparent 47px,
+      #cbd5e1 48px);
+  background-position: 0 16px;
+  /* Offset to align text baseline exactly with the red line */
+  border-radius: 4px;
 }
 
 /* ---- Speed pills ---- */
