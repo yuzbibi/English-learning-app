@@ -401,19 +401,20 @@ textarea:focus {
       #cbd5e1 10px,
       /* 1本目: Ascender Line */
       transparent 10px,
+      transparent 23px,
+      #cbd5e1 24px,
+      /* 2本目: x-height Line */
       transparent 24px,
-      #cbd5e1 25px,
-      /* 2本目: x-height Line (アセンダから15px下) */
-      transparent 25px,
-      transparent 44px,
-      #f87171 45px,
-      /* 3本目: Base Line (x-heightから20px下) */
-      transparent 45px,
+      transparent 39px,
+      #f87171 40px,
+      /* 3本目: Baseline (赤) */
+      transparent 40px,
       transparent 59px,
       #cbd5e1 60px
-      /* 4本目: Descender Line (Baseから15px下) */
+      /* 4本目: Descender Line */
     );
-  background-position: 0 0;
+  background-position: 0 6px;
+  /* padding-top分のオフセット */
   border-radius: 4px;
 }
 
