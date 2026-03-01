@@ -390,27 +390,30 @@ textarea:focus {
 /* ---- Four Lines Background for English Note ---- */
 .four-lines-bg {
   font-family: 'UD デジタル 教科書体 N-R', 'UD Digital Kyokasho-tai', 'Comic Sans MS', cursive, 'Noto Sans JP', sans-serif;
-  font-size: 1.8rem;
-  line-height: 48px;
+  font-size: 30px;
+  /* 約1.875rem */
+  line-height: 60px;
   color: #1e293b;
-  /* Slightly darker for contrast */
-  padding: 10px 16px 12px 16px;
+  padding: 6px 16px 12px 16px;
   background-color: transparent;
   background-image: repeating-linear-gradient(transparent,
-      transparent 11px,
-      #cbd5e1 12px,
-      transparent 12px,
-      transparent 23px,
-      #cbd5e1 24px,
+      transparent 9px,
+      #cbd5e1 10px,
+      /* 1本目: Ascender Line */
+      transparent 10px,
       transparent 24px,
-      transparent 35px,
-      #f87171 36px,
-      /* Base red line */
-      transparent 36px,
-      transparent 47px,
-      #cbd5e1 48px);
-  background-position: 0 16px;
-  /* Offset to align text baseline exactly with the red line */
+      #cbd5e1 25px,
+      /* 2本目: x-height Line (アセンダから15px下) */
+      transparent 25px,
+      transparent 44px,
+      #f87171 45px,
+      /* 3本目: Base Line (x-heightから20px下) */
+      transparent 45px,
+      transparent 59px,
+      #cbd5e1 60px
+      /* 4本目: Descender Line (Baseから15px下) */
+    );
+  background-position: 0 0;
   border-radius: 4px;
 }
 
