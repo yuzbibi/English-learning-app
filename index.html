@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>英語学習アプリ</title>
+  <meta name="description" content="小学生高学年向け英語学習アプリ。日本語を英語に翻訳し、読み上げ・スピーキング練習機能付き。">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="app-container">
+    <header>
+      <div class="header-inner">
+        <div class="logo">
+          <span class="logo-icon">📚</span>
+          <div>
+            <h1>英語学習アプリ</h1>
+            <p>日本語を英語に翻訳・発音練習ができるアプリ</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- Section 1: Translation -->
+      <section class="card" id="card-translate">
+        <div class="card-header">
+          <span class="section-num">01</span>
+          <div>
+            <h2>英文作るくん</h2>
+            <p class="card-desc">日本語を入力しよう。英語に翻訳してくれるよ。</p>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="ja-input">日本語を入力</label>
+          <textarea id="ja-input" placeholder="例：今日の天気はとても良いです。公園で友達と遊びたいです。"></textarea>
+        </div>
+
+        <button id="translate-btn" class="btn btn-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 8l6 6" />
+            <path d="M4 14l6-6 2-2" />
+            <path d="M2 5h12" />
+            <path d="M7 2h1" />
+            <path d="M22 22l-5-10-5 10" />
+            <path d="M14 18h6" />
+          </svg>
+          英語に翻訳する
+        </button>
+
+        <div id="en-result-container" class="result-box hidden">
+          <div class="result-label">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12" />
+            </svg>
+            翻訳結果
+          </div>
+          <p id="en-result-text" class="result-text"></p>
+
+          <div class="audio-controls">
+            <div class="speed-group">
+              <label for="speed-1">読むスピード</label>
+              <div class="speed-pills" id="speed-pills-1" data-target="speed-1">
+                <button class="pill" data-value="0.5">🐢 ゆっくり</button>
+                <button class="pill active" data-value="0.8">🚶 普通</button>
+                <button class="pill" data-value="1.1">🏃 少し速い</button>
+                <button class="pill" data-value="1.3">🚀 速い</button>
+              </div>
+              <input type="hidden" id="speed-1" value="0.8">
+            </div>
+            <button id="speak-translated-btn" class="btn btn-voice">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+              </svg>
+              英語を聞く
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2: Read custom English -->
+      <section class="card" id="card-read">
+        <div class="card-header">
+          <span class="section-num">02</span>
+          <div>
+            <h2>発音練習くん</h2>
+            <p class="card-desc">英語を入力しよう。自然な英語の発音を確認して、同時に言ってみよう。</p>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label for="en-input">英語を入力</label>
+          <textarea id="en-input" placeholder="例：Hello! My name is Ken. I like apples and playing soccer."></textarea>
+        </div>
+
+        <div class="audio-controls">
+          <div class="speed-group">
+            <label>読むスピード</label>
+            <div class="speed-pills" id="speed-pills-2" data-target="speed-2">
+              <button class="pill" data-value="0.5">🐢 ゆっくり</button>
+              <button class="pill active" data-value="0.8">🚶 普通</button>
+              <button class="pill" data-value="1.1">🏃 少し速い</button>
+              <button class="pill" data-value="1.3">🚀 速い</button>
+            </div>
+            <input type="hidden" id="speed-2" value="0.8">
+          </div>
+          <button id="speak-input-btn" class="btn btn-voice">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+              <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+              <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+            </svg>
+            英語を聞く
+          </button>
+        </div>
+      </section>
+
+      <!-- Section 3: Speaking Practice -->
+      <section class="card" id="card-speak">
+        <div class="card-header">
+          <span class="section-num">03</span>
+          <div>
+            <h2>話す練習くん</h2>
+            <p class="card-desc">英語で話してみよう。話した英語が文字になるよ。</p>
+          </div>
+        </div>
+
+        <div class="speak-area">
+          <button id="start-speech-btn" class="btn btn-record">
+            <svg class="mic-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+              <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+              <line x1="12" y1="19" x2="12" y2="23" />
+              <line x1="8" y1="23" x2="16" y2="23" />
+            </svg>
+            <span id="speech-btn-text">マイクをおして話す</span>
+          </button>
+
+          <div class="waveform-container" id="waveform" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+
+          <div id="speech-result-container" class="speech-result-box hidden">
+            <div class="result-label">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12" />
+              </svg>
+              認識した英語
+            </div>
+            <p id="speech-result-text" class="result-text"></p>
+            <div class="speech-feedback" id="speech-feedback"></div>
+          </div>
+
+          <div id="speech-not-supported" class="warning-box hidden">
+            ⚠️ このブラウザは音声認識に対応していません。Google Chromeを使ってください。
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>翻訳には自動翻訳を使用しています。難しい表現は先生やおうちの人に確認しましょう。</p>
+    </footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
