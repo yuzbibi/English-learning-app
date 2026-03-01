@@ -455,41 +455,41 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /**
- * Measure the actual font baseline using canvas and dynamically align
- * the four-line background so the red baseline matches the text exactly.
+ * Dynamically align the four-line background so the red baseline matches
+ * the actual CSS baseline of the text, using DOM measurement.
  */
 function alignFourLinesBackground(el) {
+  // Wait one animation frame so layout is settled before measuring
+  requestAnimationFrame(() => {
     const style = window.getComputedStyle(el);
-    const fontSize = parseFloat(style.fontSize);       // e.g. 30px
-    const lineHeight = parseFloat(style.lineHeight);   // e.g. 60px
-    const paddingTop = parseFloat(style.paddingTop);   // e.g. 6px
+    const lineHeight = parseFloat(style.lineHeight); // 60px
 
-    // Use canvas to measure actual font ascent for the given font
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    ctx.font = `bold ${fontSize}px ${style.fontFamily}`;
-    const metrics = ctx.measureText('lkpgyABCDE');
+    if (isNaN(lineHeight) || lineHeight === 0) return;
 
-    // fontBoundingBoxAscent = distance from baseline to top of bounding box
-    const ascent = (metrics.fontBoundingBoxAscent != null)
-        ? metrics.fontBoundingBoxAscent
-        : fontSize * 0.78;  // fallback if API not supported
-    const descent = (metrics.fontBoundingBoxDescent != null)
-        ? metrics.fontBoundingBoxDescent
-        : fontSize * 0.22;
+    // -- Measure the actual CSS baseline position via DOM --
+    // Insert a zero-size inline element at the baseline.
+    // Its bottom edge == the CSS baseline of the text in this element.
+    const marker = document.createElement('span');
+    marker.style.cssText =
+      'display:inline-block;vertical-align:baseline;' +
+      'width:1px;height:1px;overflow:hidden;pointer-events:none;';
+    el.appendChild(marker);
+    const elRect = el.getBoundingClientRect();
+    const markRect = marker.getBoundingClientRect();
+    el.removeChild(marker);
 
-    const totalGlyphHeight = ascent + descent;
-    const halfLead = Math.max(0, (lineHeight - totalGlyphHeight) / 2);
+    if (elRect.height === 0) return; // not laid out yet
 
-    // Baseline position from the top of the element's padding box:
-    const baselineFromPaddingTop = paddingTop + halfLead + ascent;
+    // Distance from element top to first-line baseline
+    const baselineY = markRect.bottom - elRect.top;
 
-    // 4 lines are equally spaced in a cycle = lineHeight
-    // Red line (line 3) is at 3/4 of cycle = 75%
-    const cycle = lineHeight;
-    const redLineInCycle = cycle * 0.75; // e.g., 45px for 60px cycle
+    // The CSS background cycles every 60px (= line-height).
+    // Our red line (#f87171) is at 70% of the cycle = 42px.
+    // (70% better matches typical x-height-to-descender ratio)
+    const redLineInCycle = lineHeight * 0.70;
 
-    // Set background-position-y so the red line coincides with the text baseline
-    const bgOffsetY = baselineFromPaddingTop - redLineInCycle;
+    // Shift background so the red line coincides with the text baseline
+    const bgOffsetY = baselineY - redLineInCycle;
     el.style.backgroundPositionY = bgOffsetY + 'px';
+  });
 }
