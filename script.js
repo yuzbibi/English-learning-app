@@ -455,41 +455,71 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /**
- * Dynamically align the four-line background so the red baseline matches
- * the actual CSS baseline of the text, using DOM measurement.
+ * Build & align a 4-line English-notebook background for the given element.
+ * Line positions are derived from ACTUAL glyph metrics of the loaded font:
+ *   Line 1 (grey) – top of 'k'  (ascender)
+ *   Line 2 (grey) – top of 'e'  (x-height / upper line)
+ *   Line 3 (red)  – baseline    (bottom of all lowercase letters)
+ *   Line 4 (grey) – bottom of 'y' (descender)
  */
 function alignFourLinesBackground(el) {
-  // Wait one animation frame so layout is settled before measuring
   requestAnimationFrame(() => {
     const style = window.getComputedStyle(el);
-    const lineHeight = parseFloat(style.lineHeight); // 60px
+    const lineHeight = parseFloat(style.lineHeight);  // 60
+    const fontSize = parseFloat(style.fontSize);    // 30
 
-    if (isNaN(lineHeight) || lineHeight === 0) return;
+    if (!lineHeight || !fontSize) return;
 
-    // -- Measure the actual CSS baseline position via DOM --
-    // Insert a zero-size inline element at the baseline.
-    // Its bottom edge == the CSS baseline of the text in this element.
-    const marker = document.createElement('span');
-    marker.style.cssText =
+    // 1. Measure the real CSS baseline via a DOM trick
+    const pin = document.createElement('span');
+    pin.style.cssText =
       'display:inline-block;vertical-align:baseline;' +
-      'width:1px;height:1px;overflow:hidden;pointer-events:none;';
-    el.appendChild(marker);
-    const elRect = el.getBoundingClientRect();
-    const markRect = marker.getBoundingClientRect();
-    el.removeChild(marker);
+      'width:0;height:0;overflow:hidden;pointer-events:none;';
+    el.appendChild(pin);
+    const elR = el.getBoundingClientRect();
+    const pinR = pin.getBoundingClientRect();
+    el.removeChild(pin);
+    if (elR.height === 0) return;
 
-    if (elRect.height === 0) return; // not laid out yet
+    const baseline = pinR.bottom - elR.top;   // px from element top
 
-    // Distance from element top to first-line baseline
-    const baselineY = markRect.bottom - elRect.top;
+    // 2. Measure glyph heights with Canvas API
+    const cv = document.createElement('canvas');
+    const ctx = cv.getContext('2d');
+    ctx.font = `bold ${fontSize}px ${style.fontFamily}`;
+    ctx.textBaseline = 'alphabetic';
 
-    // The CSS background cycles every 60px (= line-height).
-    // Our red line (#f87171) is at 70% of the cycle = 42px.
-    // (70% better matches typical x-height-to-descender ratio)
-    const redLineInCycle = lineHeight * 0.70;
+    const mk = ctx.measureText('k');
+    const me = ctx.measureText('e');
+    const my = ctx.measureText('y');
 
-    // Shift background so the red line coincides with the text baseline
-    const bgOffsetY = baselineY - redLineInCycle;
-    el.style.backgroundPositionY = bgOffsetY + 'px';
+    const kAsc = (mk.actualBoundingBoxAscent != null) ? mk.actualBoundingBoxAscent : fontSize * 0.69;
+    const eAsc = (me.actualBoundingBoxAscent != null) ? me.actualBoundingBoxAscent : fontSize * 0.50;
+    const yDesc = (my.actualBoundingBoxDescent != null) ? my.actualBoundingBoxDescent : fontSize * 0.22;
+
+    // 3. Compute positions within the 60px tile
+    const cy = lineHeight;    // 60
+    const red = cy * 0.70;     // 42 px (JS aligns this to the actual baseline)
+
+    const l1 = red - kAsc;    // top of k
+    const l2 = red - eAsc;    // top of e
+    const l4 = red + yDesc;   // bottom of y
+
+    // 4. Build a 1px-line gradient
+    const px = (p) => Math.max(0, Math.min(cy, p));
+    const seg = (p, color) =>
+      `transparent ${px(p - 0.5)}px,${color} ${px(p)}px,` +
+      `${color} ${px(p + 1)}px,transparent ${px(p + 1.5)}px`;
+
+    const grad =
+      `linear-gradient(${seg(l1, '#c9d6e3')},${seg(l2, '#c9d6e3')},` +
+      `${seg(red, '#f87171')},${seg(l4, '#c9d6e3')})`;
+
+    el.style.backgroundImage = grad;
+    el.style.backgroundSize = `100% ${cy}px`;
+    el.style.backgroundRepeat = 'repeat-y';
+
+    // 5. Shift so the red line sits exactly at the text baseline
+    el.style.backgroundPositionY = (baseline - red) + 'px';
   });
 }

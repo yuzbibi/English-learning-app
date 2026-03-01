@@ -396,23 +396,9 @@ textarea:focus {
   color: #1e293b;
   padding: 6px 16px 12px 16px;
   background-color: transparent;
-  background-image: linear-gradient(transparent 25px,
-      #cbd5e1 26px,
-      /* アッパーライン (元ascender15px + 3mm下⬇) */
-      transparent 27px,
-      transparent 41px,
-      #f87171 42px,
-      /* ベースライン（赤） ← JSで位置合わせ */
-      transparent 43px,
-      transparent 47px,
-      #cbd5e1 48px,
-      /* ボトムライン (元descender59px - 3mm上⬆) */
-      transparent 49px);
+  /* background-image / background-position はJSが実測値に基づき動的に設定 */
   background-size: 100% 60px;
-  /* 60px タイルで繰り返す */
   background-repeat: repeat-y;
-  background-position: 0 0;
-  /* JSがbackgroundPositionYを動的に設定 */
   border-radius: 4px;
 }
 
